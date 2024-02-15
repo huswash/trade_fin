@@ -5,9 +5,10 @@ from lumibot.traders import Trader
 from datetime import datetime as dt
 from datetime import timedelta
 from alpaca_trade_api.rest import REST
+from Utill_bot import sentiment_estimate
 
-API_KEY = " "
-SECRET_KEY = " "
+API_KEY = ""
+SECRET_KEY = ""
 BASE_URL = "https://paper-api.alpaca.markets"
 
 ALPACA_CONFIG = {
@@ -79,6 +80,14 @@ class MLTrader(Strategy):
         news = [ev.__dict__ ["_raw"]["headline"]for ev in news]
                 
         return news
+    def get_sentiment(self):
+        today, three_days_prior = self.get_dates()
+        news = self.api.get_news(symbol=self.symbol, 
+                                 start=three_days_prior, 
+                                 end=today) 
+        news = [ev.__dict__["_raw"]["headline"] for ev in news]
+        probability, sentiment = sentiment_estimate(news)
+        return probability, sentiment 
 
     def on_trading_iteration(self):
         cash, last_price, quantity = self.position_size()
@@ -120,6 +129,3 @@ strategy.backtest(
     live = False,
     )
 
-
-def hello():
-    print("Hello World!")
