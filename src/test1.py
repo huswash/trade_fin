@@ -7,8 +7,8 @@ from datetime import timedelta
 from alpaca_trade_api.rest import REST
 from Utill_bot import sentiment_estimate
 
-API_KEY = "PK6QWWTUU2Q2TLVTHWRY"
-SECRET_KEY = "XBSmZChYCxhY8bjPtaBKK07gc2YJQeVRa7mpuo3i"
+API_KEY = ""
+SECRET_KEY = ""
 BASE_URL = "https://paper-api.alpaca.markets"
 
 ALPACA_CONFIG = {
