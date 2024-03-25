@@ -7,17 +7,21 @@ from datetime import timedelta
 from alpaca_trade_api.rest import REST
 from Utill_bot import sentiment_estimate
 
-API_KEY = ""
-SECRET_KEY = ""
-BASE_URL = "https://paper-api.alpaca.markets"
+# API_KEY = "PK6QWWTUU2Q2TLVTHWRY"
+# SECRET_KEY = "XBSmZChYCxhY8bjPtaBKK07gc2YJQeVRa7mpuo3i"
+# BASE_URL = "https://paper-api.alpaca.markets"
 
-ALPACA_CONFIG = {
-    "api_key": API_KEY,
-    "secret_key": SECRET_KEY,
-    "Paper": True,
-}
+API_KEY= "PK756K"
+API_SECRET= "dTMhwOvhvbaFkPlAb8IJMhMUdTO33VHqfcE"
+BASE_URL = "https://paper-api.alpaca.markets/v2"
+
 
 #class MLTrader(Strategy):
+ALPACA_CONFIG = {
+    "API_KEY": "PKDWQKH760DH856KDD",
+    "API_SECRET": "hAM5JMhTMhwOvzdaFkPlAb8I",
+    "Paper": True,
+}
 #    def __init__(self, broker, symbol, timeframe, start, end):
 #        super().__init__(broker, symbol, timeframe, start, end)
 #        self.broker = broker
@@ -56,7 +60,7 @@ class MLTrader(Strategy):
         self.broker = broker
         self.last_trade = None
         self.cash_at_risk = cash_at_risk
-        self.api = REST(API_KEY, SECRET_KEY, base_url=BASE_URL)
+        self.api = REST(API_KEY, API_SECRET, base_url=BASE_URL)
 
 
     def position_size(self):
