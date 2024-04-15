@@ -30,6 +30,17 @@ from pdfquery import PDFQuery
 #      ])
 
 import tabula
+from pdfminer.high_level import extract_pages, extract_text
+import re
 
 tables = tabula.read_pdf("FXD2-2016-2IIFB1-2016-9.pdf", pages="all")
-print(tables[0])
+print(type(tables[0]))
+
+text = extract_text("FXD2-2016-2IIFB1-2016-9.pdf")
+# pattern = re.compile(r"\b(?:FXD|IFB\d*)\s\d+/\d{4}/\d+\b")
+pattern = re.compile(r"FXD \d{1,2}/\d{4}/\d{1,2}|IFB\d{1,2}/\d{4}/\d{1,2}")
+matches = pattern.findall(text)
+
+print(matches)
+# print(text)
+# pattern = re.compile(r"[a-zA-Z\d]+\s{1}")
